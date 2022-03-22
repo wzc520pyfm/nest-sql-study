@@ -1,0 +1,10 @@
+{
+  "type": "mysql",
+  "host": "119.45.102.83",
+  "port": 3306,
+  "username": "root",
+  "password": "wzc520pyf",
+  "database": "wzc_nest",
+  "entities": ["dist/**/*.entity{.ts,.js}","dist/feature/**/*.entity{.ts,.js}"],
+  "synchronize": true
+}
