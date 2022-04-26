@@ -15,6 +15,6 @@ import { UsersController } from './users.controller';
   /**
    * 通过导出整个模块来实现: 在导入TypeOrmModule.forFeature 的模块之外使用存储库
    */
-  exports: [TypeOrmModule],
+  exports: [TypeOrmModule, UsersService],
 })
 export class UsersModule {}

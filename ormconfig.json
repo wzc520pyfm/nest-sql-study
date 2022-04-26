@@ -5,6 +5,7 @@
   "username": "root",
   "password": "wzc520pyf",
   "database": "wzc_nest",
-  "entities": ["dist/**/*.entity{.ts,.js}","dist/feature/**/*.entity{.ts,.js}"],
-  "synchronize": true
+  "entities": ["dist/feature/**/*.entity{.ts,.js}"],
+  "synchronize": true,
+  "autoLoadEntities": true
 }

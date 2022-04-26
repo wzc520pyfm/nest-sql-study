@@ -3,7 +3,6 @@
  */
 
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { User } from '../user/user.entity';
 
 @Entity()
 export class Photo {
@@ -11,5 +10,5 @@ export class Photo {
   id: number;
 
   @Column()
-  user: User;
+  user: number;
 }
