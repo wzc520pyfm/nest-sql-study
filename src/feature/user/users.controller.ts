@@ -6,25 +6,20 @@ import {
   Param,
   Post,
   Put,
+  UseGuards,
 } from '@nestjs/common';
 import { Roles } from 'src/common/decorators/roles.decorator';
 import { Role } from 'src/common/enums/role.enum';
+import { RolesGuard } from 'src/common/guard/roles.guard';
 import { Result } from 'src/common/interfaces/result.interface';
+import { JwtAuthGuard } from 'src/core/auth/guards/jwt-auth.guard';
 import { User } from './user.entity';
 import { UsersService } from './users.service';
 
 @Controller('/users')
+@UseGuards(JwtAuthGuard, RolesGuard) // 对此controller层的所有节点开启token校验和鉴权
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
-
-  // @UseGuards(LocalAuthGuard)
-  // @Post('login')
-  // async login(
-  //   @Body() body: { phone: string; password: string },
-  // ): Promise<Result> {
-  //   await this.usersService.login(body.phone, body.password);
-  //   return { statusCode: 200, message: '登录成功' };
-  // }
 
   @Get('/')
   @Roles(Role.ADMIN)

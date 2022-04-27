@@ -29,10 +29,12 @@ export class User {
   id: number;
 
   // 设置列类型
-  @Column({ type: 'varchar', length: 32 })
+  @Column({ type: 'varchar', length: 32, default: 'user' })
   firstName: string;
 
-  @Column()
+  @Column({
+    default: '',
+  })
   lastName: string;
 
   // 设置列默认值

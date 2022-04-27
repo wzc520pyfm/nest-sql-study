@@ -1,5 +1,6 @@
-import { HttpException, Injectable } from '@nestjs/common';
+import { HttpException, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { CryptoUtil } from 'src/common/utils/crypto.util';
 import { Repository, Connection } from 'typeorm';
 import { User } from './user.entity';
 
@@ -14,6 +15,7 @@ export class UsersService {
     @InjectRepository(User)
     private usersRepository: Repository<User>,
     private connection: Connection,
+    @Inject(CryptoUtil) private readonly cryptoUtil: CryptoUtil,
   ) {}
 
   findAll(): Promise<Array<User>> {
@@ -37,7 +39,10 @@ export class UsersService {
   }
 
   async createOne(user: User): Promise<void> {
-    await this.usersRepository.save(user);
+    const existing = await this.findOneByPhone(user.phone);
+    if (existing) throw new HttpException('用户已存在', 409);
+    user.password = this.cryptoUtil.encryptPassword(user.password);
+    await this.usersRepository.save(user); // 执行成功会返回一个User实体, 如果后续程序需要这个实体, 请添加return
   }
 
   async removeOne(id: number): Promise<void> {

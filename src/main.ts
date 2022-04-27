@@ -4,7 +4,8 @@ import { logger } from './common/middleware/logger.middleware';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    logger: ['error', 'warn', 'debug', 'log', 'verbose'],
+    logger: ['error', 'warn', 'debug', 'log', 'verbose'], // 日志级别
+    cors: true, // 跨域
   });
   app.setGlobalPrefix('api/v1'); // 全局路由前缀
   app.use(logger); // 全局日志中间件
