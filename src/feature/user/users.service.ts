@@ -41,7 +41,7 @@ export class UsersService {
   async createOne(user: User): Promise<void> {
     const existing = await this.findOneByPhone(user.phone);
     if (existing) throw new HttpException('用户已存在', 409);
-    user.password = this.cryptoUtil.encryptPassword(user.password);
+    user.password = this.cryptoUtil.encryptPassword(user.password); // 密码加密
     await this.usersRepository.save(user); // 执行成功会返回一个User实体, 如果后续程序需要这个实体, 请添加return
   }
 

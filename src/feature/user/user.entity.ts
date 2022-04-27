@@ -57,7 +57,7 @@ export class User {
 
   @Column({
     type: 'varchar',
-    length: 32,
+    length: 64,
     nullable: false,
     select: true,
     default: '123456',

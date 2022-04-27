@@ -6,6 +6,7 @@ import { AuthService } from './auth.service';
 import { jwtConstants } from './constants';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './strategies/jwt.strategy';
+import { CommonModule } from 'src/common/common.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { JwtStrategy } from './strategies/jwt.strategy';
       secret: jwtConstants.secret,
       signOptions: { expiresIn: `${60 * 60}s` }, // 过期时间
     }),
+    CommonModule,
   ],
   providers: [AuthService, LocalStrategy, JwtStrategy],
   exports: [AuthService],
