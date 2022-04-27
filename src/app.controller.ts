@@ -36,7 +36,15 @@ export class AppController {
   //TODO 目前验证失败的返回稍有问题, 原因应该是自定义的错误拦截器和验证器抛出错误的兼容问题
   @UsePipes(new ValidationPipe({ transform: true })) // controller层开启验证转换, 开启后, '14' => 14
   @Post('auth/register')
-  async register(@Body() createUserDto: CreateUserDto): Promise<Result> {
+  async register(
+    // 如果有必要, 可以开启显示类型转换
+    //@Param('id', ParseIntPipe) id: number,
+    //@Query('sort', ParseBoolPipe) sort: boolean,
+    @Body() createUserDto: CreateUserDto,
+    // 如果需要验证数组,请使用ParseArrayPipe
+    // @Body(new ParseArrayPipe({ items: CreateUserDto }))
+    // createUserDtos: CreateUserDto[],
+  ): Promise<Result> {
     await this.authService.register(createUserDto);
     return { statusCode: 200, message: '注册成功' };
   }

@@ -35,5 +35,6 @@ bootstrap();
  *                    pnpm install @types/passport-jwt --save-dev
  * 安装静态服务依赖库: pnpm install --save @nestjs/serve-static
  * 安装验证管道依赖库: pnpm i --save class-validator class-transformer
+ * 安装 映射 依赖库:    pnpm i --save @nestjs/mapped-types
  * 安装工具库: pnpm install dayjs --save // 安装日期格式化库
  */
