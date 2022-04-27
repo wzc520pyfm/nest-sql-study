@@ -1,6 +1,7 @@
 import { HttpException, Inject, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { CryptoUtil } from 'src/common/utils/crypto.util';
+import { CreateUserDto } from 'src/entities/create-user.dto';
 import { User } from 'src/feature/user/user.entity';
 import { UsersService } from 'src/feature/user/users.service';
 
@@ -30,7 +31,7 @@ export class AuthService {
   }
 
   // 注册
-  async register(user: User): Promise<void> {
-    return await this.usersService.createOne(user);
+  async register(createUserDto: CreateUserDto): Promise<void> {
+    return await this.usersService.createOne(createUserDto as User);
   }
 }
